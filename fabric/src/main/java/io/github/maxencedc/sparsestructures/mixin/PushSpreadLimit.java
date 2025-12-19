@@ -8,8 +8,9 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 @Mixin(RandomSpreadStructurePlacement.class)
 public class PushSpreadLimit {
 
-    @ModifyConstant(method = "validate", constant = @Constant(intValue = 4096))
+    @ModifyConstant(method = "*", constant = @Constant(intValue = 4096))
     private static int pushSpreadLimit(int original) {
         return Integer.MAX_VALUE;
     }
 }
+
