@@ -23,7 +23,6 @@ public class DumpStructureSetsCommand {
 
         dispatcher.register(
             literal("dumpstructuresets")
-                .requires(cs -> cs.hasPermissionLevel(2))
                 .executes(context -> {
                     context.getSource().sendFeedback(() -> Text.translatable("command.sparsestructures.dump.dumping"), false);
                     String fileName = new SimpleDateFormat("'structure_sets_dump_'yy_MM_dd_HH_mm'.txt'").format(new Date());
