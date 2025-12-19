@@ -1,26 +1,24 @@
 package io.github.maxencedc.sparsestructures.platform;
 
 import io.github.maxencedc.sparsestructures.platform.services.IPlatformHelper;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.fabricmc.loader.api.FabricLoader;
 
-public class ForgePlatformHelper implements IPlatformHelper {
+public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
     public String getPlatformName() {
-
-        return "Forge";
+        return "Fabric";
     }
 
     @Override
     public boolean isModLoaded(String modId) {
 
-        return ModList.get().isLoaded(modId);
+        return FabricLoader.getInstance().isModLoaded(modId);
     }
 
     @Override
     public boolean isDevelopmentEnvironment() {
 
-        return !FMLLoader.isProduction();
+        return FabricLoader.getInstance().isDevelopmentEnvironment();
     }
 }

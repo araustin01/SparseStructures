@@ -1,7 +1,7 @@
 package io.github.maxencedc.sparsestructures;
 
 import com.google.gson.JsonObject;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.registry.RegistryKey;
 
 import java.util.List;
 
@@ -22,11 +22,11 @@ public class SparseStructuresConfig {
         this.customSpreadFactors = customSpreadFactors;
     }
 
-    public double getSpreadFactor(ResourceKey resourceKey, JsonObject jsonObject) {
+    public double getSpreadFactor(RegistryKey resourceKey, JsonObject jsonObject) {
         double factor = SparseStructuresCommon.config.spreadFactor();
         for (CustomSpreadFactors s : this.customSpreadFactors) {
             if (s == null) continue;
-            String structure_set = resourceKey.location().toString();
+            String structure_set = resourceKey.getValue().toString();
             String structure = s.structure();
             if (structure_set.equals(structure) || jsonObject.getAsJsonArray("structures").asList().stream().anyMatch(p -> p.getAsJsonObject().get("structure").getAsString().equals(structure))) {
                 factor = s.factor();
